@@ -78,7 +78,7 @@ namespace Calculator.Tests
                 transportMode = TransportModes.petrol,
                 distance = 100, // Set a distance value
                 milesOrKms = DistanceMeasurement.miles,
-                numDays = 6 // Set a number of days value
+                numDays = 3 // Set a number of days value
             };
 
             // Act
