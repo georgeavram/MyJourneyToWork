@@ -48,49 +48,57 @@ namespace Calculator.Tests
         }
 
         [TestMethod]
-        public void sustainabilityWeighting_IsPetrol_returnsvalid()
-        {
-            //arrange
-            Calculator calculator = new Calculator()
-            {
-                transportMode = TransportModes.petrol,
-                distance = 100, 
-                milesOrKms = DistanceMeasurement.miles,
-                numDays = 6 
-            };
-
-            //act
-            double expected_result = calculator.transportModeWeighting[(int)TransportModes.petrol] * calculator.convertDistance() * (calculator.numDays * 2);
-            double actual_result = 9600;
-
-            //Assert
-            Assert.AreEqual(actual_result, expected_result);
-        }
-
-
-
-        [TestMethod]
-        public void sustainabilityWeighting_ValidInput_ReturnsTrueValue()
+        public void sustainabilityWeighting_TransportModePetrol_CorrectCalculation()
         {
             // Arrange
             Calculator calculator = new Calculator()
             {
-                transportMode = TransportModes.petrol,
+                transportMode = TransportModes.petrol, // transport mode
                 distance = 100, // Set a distance value
-                milesOrKms = DistanceMeasurement.miles,
-                numDays = 3 // Set a number of days value
+                milesOrKms = DistanceMeasurement.miles, // calculated in miles
+                numDays = 5 // number of days working
             };
 
             // Act
-            double expected_result = calculator.transportModeWeighting[(int)TransportModes.petrol] * calculator.convertDistance() * (calculator.numDays * 2);
-            double actual_result = calculator.sustainabilityWeighting;
+            double actual_result = calculator.transportModeWeighting[(int)TransportModes.petrol] * calculator.convertDistance() * (calculator.numDays * 2);
+            double expected_result = 8000;
+
+            // Assert
+            Assert.AreEqual(actual_result,expected_result);
+            Console.WriteLine($"Expected Result: {expected_result}"); //shows expected result in test
+            Console.WriteLine($"Actual Result: {actual_result}"); // shows actual result in test
+
+        }
+
+
+        [TestMethod]
+        public void sustainabilityWeighting_TransportModedeisel_CorrectCalculation()
+        {
+            // Arrange
+            Calculator calculator = new Calculator()
+            {
+                transportMode = TransportModes.petrol, // transport mode
+                distance = 100, // Set a distance value
+                milesOrKms = DistanceMeasurement.miles, // calculated in miles
+                numDays = 5 // number of days working
+            };
+
+            // Act
+            double expected_result = calculator.transportModeWeighting[(int)TransportModes.deisel] * calculator.convertDistance() * (calculator.numDays * 2);
+            double actual_result = 10000;
 
             // Assert
             Assert.AreEqual(expected_result, actual_result);
-            Console.WriteLine($"Expected Result: {expected_result}");
-            Console.WriteLine($"Actual Result: {actual_result}");
+            Console.WriteLine($"Expected Result: {expected_result}"); //shows expected result in test
+            Console.WriteLine($"Actual Result: {actual_result}"); // shows actual result in test
 
         }
+
+
+
+
+
+
 
     }
 }
